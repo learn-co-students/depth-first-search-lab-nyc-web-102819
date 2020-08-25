@@ -15,23 +15,12 @@ function depthFirstSearch(rootNode, vertices, edges) {
     return visited;
 }
 
-
 function findAdjacent(nodeName, vertices, edges){
-    return edges.filter(function(edge){
-        return edge.includes(nodeName)
-        }).map(function(edge){
-            return edge.filter(function(node){
-                return (node != nodeName)
-            })[0]
-        }).map(function(name){
-            return findNode(name, vertices)
-        }).filter(function(node){
-            return !node.discovered
-        })
+    return edges.filter(edge => edge.includes(nodeName))
+    .map(edge => edge.filter(node => node != nodeName)[0])
+    .map(name => findNode(name, vertices)).filter(node => !node.discovered)
 }
 
 function findNode(nodeName, vertices){
-    return vertices.find(function(vertex){
-        return vertex.name == nodeName
-    })
+    return vertices.find(vertex => vertex.name == nodeName) 
 }
